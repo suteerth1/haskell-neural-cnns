@@ -1,4 +1,0 @@
-Test suite test-foo: RUNNING...
-yes
-Test suite test-foo: PASS
-Test suite logged to: dist/test/haskell-neural-cnns-0.1.0.0-test-foo.log
