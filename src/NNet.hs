@@ -23,11 +23,12 @@ feed :: [Float] -> [([Float], [[Float]])] -> [Float]
 revaz :: [Float] -> [([Float], [[Float]])] -> ([[Float]], [[Float]])
 deltas :: [Float] -> [Float] -> [([Float], [[Float]])] -> ([[Float]], [[Float]])
 learn :: [Float] -> [Float] -> [([Float], [[Float]])] -> [([Float], [[Float]])]
-length' :: [Float] -> Int
 
-{-@measure length'@-}
-{-@ length' :: [Float] -> {v: Int | v >=0 } @-}
-length' =  length
+{-@measure lenght' @-}
+{-@lenght' :: [Float] -> Int@-}
+lenght' :: [Float] -> Int
+lenght' [] = 0
+lenght' (h:t) = 1 + lenght' t
 
 
 gauss scale = do
@@ -42,7 +43,7 @@ relu = max 0
 relu' x | x < 0      = 0
         | otherwise  = 1
 
-{-@zLayer :: [Float] -> ([Float], a:[[Float]]) -> {b:[Float]| length a == length b} @-}
+{-@zLayer :: [Float] -> a:([Float], [[Float]]) -> {b:[Float]| lenght' a == lenght' b} @-}
 zLayer as (bs, wvs) = zipWith (+) bs $ sum . zipWith (*) as <$> wvs
 
 feed = foldl' (((relu <$>) . ) . zLayer)

@@ -9,10 +9,10 @@ import System.Random
 
 main = do
   [trainI, trainL, testI, testL] <- mapM ((decompress  <$>) . BS.readFile)
-    [ "data/train-images-idx3-ubyte.gz"
-    , "data/train-labels-idx1-ubyte.gz"
-    ,  "data/t10k-images-idx3-ubyte.gz"
-    ,  "data/t10k-labels-idx1-ubyte.gz"
+    [ "../data/train-images-idx3-ubyte.gz"
+    , "../data/train-labels-idx1-ubyte.gz"
+    ,  "../data/t10k-images-idx3-ubyte.gz"
+    ,  "../data/t10k-labels-idx1-ubyte.gz"
     ]
   b <- newBrain [784, 30, 10]
   n <- (`mod` 10000) <$> randomIO
